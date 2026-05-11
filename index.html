@@ -1,1 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KAZENAGI Logo Animation</title>
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
+body{
+width:100vw;
+height:100vh;
+overflow:hidden;
+background:#050505;
+display:flex;
+align-items:center;
+justify-content:center;
+font-family:Arial, sans-serif;
+}
+
+.bg{
+position:absolute;
+width:100%;
+height:100%;
+background:
+linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.9)),
+radial-gradient(circle at center, #1a1a1a 0%, #000 70%);
+}
+
+.lines{
+position:absolute;
+width:200%;
+height:200%;
+background-image:repeating-linear-gradient(
+90deg,
+transparent 0px,
+transparent 80px,
+rgba(255,255,255,0.03) 81px,
+transparent 82px
+);
+animation:moveLines 10s linear infinite;
+transform:rotate(-8deg);
+}
+
+.logoWrap{
+position:relative;
+width:700px;
+max-width:80vw;
+opacity:0;
+transform:scale(1.4) translateY(40px);
+animation:logoReveal 4s ease forwards;
+filter:drop-shadow(0 0 30px rgba(255,255,255,0.2));
+}
+
+.logo{
+width:100%;
+display:block;
+filter:contrast(120%);
+animation:flicker 0.15s infinite alternate;
+}
+
+.redFlash{
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(255,0,0,0.08);
+mix-blend-mode:screen;
+animation:redPulse 2s infinite;
+pointer-events:none;
+}
+
+.noise{
+position:absolute;
+width:100%;
+height:100%;
+background-image:url('https://grainy-gradients.vercel.app/noise.svg');
+opacity:0.08;
+mix-blend-mode:overlay;
+pointer-events:none;
+}
+
+.scan{
+position:absolute;
+width:100%;
+height:4px;
+background:rgba(255,255,255,0.15);
+filter:blur(4px);
+animation:scanMove 3s linear infinite;
+}
+
+.subtitle{
+position:absolute;
+bottom:14%;
+letter-spacing:10px;
+font-size:12px;
+color:#cfcfcf;
+opacity:0;
+animation:textFade 2s ease forwards;
+animation-delay:2.5s;
+}
+
+@keyframes logoReveal{
+0%{
+opacity:0;
+transform:scale(1.4) translateY(40px);
+filter:blur(12px);
+}
+40%{
+opacity:1;
+}
+100%{
+opacity:1;
+transform:scale(1) translateY(0px);
+filter:blur(0px);
+}
+}
+
+@keyframes flicker{
+0%{
+opacity:1;
+}
+100%{
+opacity:0.94;
+}
+}
+
+@keyframes redPulse{
+0%{
+opacity:0;
+}
+50%{
+opacity:1;
+}
+100%{
+opacity:0;
+}
+}
+
+@keyframes moveLines{
+0%{
+transform:translateX(0) rotate(-8deg);
+}
+100%{
+transform:translateX(-200px) rotate(-8deg);
+}
+}
+
+@keyframes scanMove{
+0%{
+top:-10%;
+}
+100%{
+top:110%;
+}
+}
+
+@keyframes textFade{
+0%{
+opacity:0;
+transform:translateY(10px);
+}
+100%{
+opacity:1;
+transform:translateY(0px);
+}
+}
+
+</style>
+</head>
+<body>
+
+<div class="bg"></div>
+<div class="lines"></div>
+<div class="noise"></div>
+<div class="scan"></div>
+
+<div class="logoWrap">
+<img class="logo" src="/mnt/data/logo final.png">
+<div class="redFlash"></div>
+</div>
+
+<div class="subtitle">
+KAZENAGI ・ CONTROL OVER SPEED
+</div>
+
+</body>
+</html>
